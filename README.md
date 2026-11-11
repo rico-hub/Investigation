@@ -28,28 +28,4 @@ De uitleg en notes staan niet in deze repo; die worden apart bijgehouden.
 
 **Test-accounts** (in alle 4 systemen): `admin@test.nl` (admin) en `bram@test.nl` (user), wachtwoord: `password`.
 
-## Waar zit elke eis?
-
-| Eis | Waar (bibliotheek als voorbeeld) |
-|---|---|
-| Primary key / Foreign keys / constraints | `database.sql` |
-| Create / Read / Update / Delete | `book_create.php`, `index.php`, `book_edit.php`, `book_delete.php` + `functions/books.php` |
-| Dropdown (waarde behouden) | `selected()` in `functions/helpers.php`, gebruikt in `index.php` en `includes/book_form.php` |
-| Filters + wissen | filterbalk in `index.php`, knop "Filters wissen" = link naar `index.php` zonder `?` |
-| Kolomfilters | 2e rij in `<thead>` met `form="filters"` |
-| Tabel + eigen header + ID kolom | `index.php` `<thead>`, `sort_link()` |
-| StatusFilter | `status` dropdown; klachtensysteem: status-knoppen met aantallen |
-| Searchbar | `search` + `LIKE ?` over meerdere kolommen |
-| TotalCount | `count($books)` van `books_count_all()` |
-| Embedded | `info.php` (PHP in HTML + iframe) en `includes/*.php` |
-| Buttons | `.btn` classes in CSS, POST-formulieren voor acties |
-| Sessie actief + wissen | `check_session_timeout()`, `logout_user()`, `cart_clear()` na afrekenen |
-| Proper checks & ends | elke functie: checks -> `return function_error()`, `redirect()` = `exit` |
-| Admin / normale users | `require_admin()`, `is_admin()` in `functions/auth.php` |
-| Wachtwoorden gehasht | `password_hash()` / `password_verify()` |
-| Add to cart | `functions/cart.php`, `cart.php` |
-| Table snippets om data toe te voegen | `includes/book_form.php` (formulier in tabel) en schoolsysteem `cart.php` (cijfer per rij) |
-| Error-code 420 / 410 | `function_error()` / `database_error()` in `functions/helpers.php` |
-| SQL dummy data | onderaan elke `database.sql` |
-
 > Getest op XAMPP (PHP 8.4.27, MariaDB 10.11.16): alle 4 systemen draaien zonder warnings of deprecations (103 end-to-end checks).
