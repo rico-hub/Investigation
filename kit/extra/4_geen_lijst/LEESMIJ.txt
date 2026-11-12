@@ -1,0 +1,21 @@
+EXTRA PUZZELSTUK: GEEN LIJST (geen categorie-dropdown)
+Voor: als het ding nergens uit kiest (bv. sportles zonder sport).
+Database: tabel categories en de kolom category_id + foreign key zijn weg.
+
+ZO GEBRUIK JE HET
+1. Kopieer de map kit (je nieuwe app).
+2. Kopieer ALLE bestanden uit deze map over je nieuwe app heen (zelfde mappen, "Vervangen" kiezen).
+3. Verwijder in je nieuwe app: functions/categories.php
+4. Pas DAARNA pas hernoemen (Notion pagina 8, Fase 2). Dan worden deze stukken mee hernoemd.
+
+BESTANDEN IN DEZE MAP
+- cart.php
+- database.sql
+- functions/cart.php
+- functions/items.php
+- includes/init.php
+- includes/item_form.php
+- index.php
+- item_create.php
+- item_edit.php
+- item_trash.php

@@ -1,13 +1,17 @@
+<?php
+// includes/footer.php - UNIVERSEEL: in elke app exact hetzelfde bestand. NIET AANPASSEN.
+// Gebruikt dezelfde variabelen als header.php (uit config/site.php).
+?>
 </main>
 
 <footer class="site-footer">
     <div class="footer">
         <div class="footer-brand">
             <a href="index.php" class="logo">
-                <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M12 7v2"/><path d="M12 13h.01"/></svg>
+                <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><?= $site_logo ?></svg>
                 <?= e(APP_NAME) ?>
             </a>
-            <p>Klachten indienen, volgen en afhandelen op één plek. &copy; <?= date('Y') ?></p>
+            <p><?= e($site_tagline) ?> &copy; <?= date('Y') ?></p>
             <!-- Social icons: wel klikbaar, maar gaan (nog) nergens heen -->
             <div class="socials">
                 <button type="button" aria-label="Instagram"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><path d="M17.5 6.5h.01"/></svg></button>
@@ -25,16 +29,14 @@
                     <a href="<?= e($file) ?>"><?= e($label) ?></a>
                 <?php endforeach; ?>
             </div>
-            <div>
-                <h4>Account</h4>
-                <?php if (is_logged_in()): ?>
-                    <a href="index.php">Klachten</a>
-                    <a href="logout.php">Uitloggen</a>
-                <?php else: ?>
-                    <a href="login.php">Inloggen</a>
-                    <a href="register.php">Registreren</a>
-                <?php endif; ?>
-            </div>
+            <?php if (count($account_menu) > 0): ?>
+                <div>
+                    <h4>Account</h4>
+                    <?php foreach ($account_menu as $file => $label): ?>
+                        <a href="<?= e($file) ?>"><?= e($label) ?></a>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 </footer>

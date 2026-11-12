@@ -1,0 +1,15 @@
+EXTRA PUZZELSTUK: 1 DATUM KIEZEN BIJ AFREKENEN
+Voor: afspraak (garage, kapper), reservering op 1 dag. De user kiest in de winkelmand een datum.
+Checks (420): geldige datum, niet in het verleden, niet al bezet op die dag.
+Database: orders krijgt booking_date.
+
+ZO GEBRUIK JE HET
+1. Kopieer de map kit (je nieuwe app).
+2. Kopieer ALLE bestanden uit deze map over je nieuwe app heen (zelfde mappen, "Vervangen" kiezen).
+3. Pas DAARNA pas hernoemen (Notion pagina 8, Fase 2). Dan worden deze stukken mee hernoemd.
+
+BESTANDEN IN DEZE MAP
+- cart.php
+- database.sql
+- functions/orders.php
+- orders.php

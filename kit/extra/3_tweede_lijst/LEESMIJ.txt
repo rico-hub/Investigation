@@ -1,0 +1,20 @@
+EXTRA PUZZELSTUK: TWEEDE LIJST (2e dropdown)
+Voor: product met merk EN kleur, auto met merk EN brandstof, enz.
+Voorbeeld-naam: colors (kleuren). Wil je een ander woord? Na het kopieren zoek en vervang je (Match Case, alleen *.php, *.sql):
+  colors -> jouw meervoud, color -> jouw enkelvoud, Kleur / kleur -> jouw tekst.
+Database: nieuwe tabel colors, items krijgt color_id + foreign key fk_items_color.
+
+ZO GEBRUIK JE HET
+1. Kopieer de map kit (je nieuwe app).
+2. Kopieer ALLE bestanden uit deze map over je nieuwe app heen (zelfde mappen, "Vervangen" kiezen).
+3. Pas DAARNA pas hernoemen (Notion pagina 8, Fase 2). Dan worden deze stukken mee hernoemd.
+
+BESTANDEN IN DEZE MAP
+- database.sql
+- functions/colors.php
+- functions/items.php
+- includes/init.php
+- includes/item_form.php
+- index.php
+- item_create.php
+- item_edit.php

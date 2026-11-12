@@ -77,10 +77,10 @@ CREATE TABLE action_log (
 -- Datums zijn relatief (CURDATE() + INTERVAL) zodat er altijd toekomstige lessen zijn
 -- ---------------------------------------------------------------------
 INSERT INTO users (id, name, email, password, role) VALUES
-(1, 'Admin Anja',    'admin@test.nl', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin'),
-(2, 'Bram Bakker',   'bram@test.nl',  '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'user'),
-(3, 'Cleo de Vries', 'cleo@test.nl',  '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'user'),
-(4, 'Daan Smit',     'daan@test.nl',  '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'user');
+(1, 'Admin Anja',    'admin@test.sr', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin'),
+(2, 'Paul Bakker',   'paul@test.sr',  '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'user'),
+(3, 'Cleo de Vries', 'cleo@test.sr',  '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'user'),
+(4, 'Daan Smit',     'daan@test.sr',  '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'user');
 
 INSERT INTO sports (id, name) VALUES
 (1, 'Voetbal'),

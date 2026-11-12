@@ -43,7 +43,7 @@ require 'includes/header.php';
 
     <button type="submit" class="btn">Inloggen</button>
     <p>Nog geen account? <a href="register.php">Registreer hier</a></p>
-    <p class="hint">Test: admin@test.nl / bram@test.nl &ndash; wachtwoord: password</p>
+    <p class="hint">Test: admin@test.sr / paul@test.sr &ndash; wachtwoord: password</p>
 </form>
 
 <?php require 'includes/footer.php'; ?>

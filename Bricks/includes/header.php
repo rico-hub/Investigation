@@ -1,19 +1,20 @@
 <?php
+// =====================================================================
+// includes/header.php - UNIVERSEEL: in elke app exact hetzelfde bestand.
+// NIET AANPASSEN. Alles wat per app anders is staat in config/site.php
+// (menu, logo, account-menu, winkelmand).
+// Zet $page_title VOOR je deze include doet.
+// =====================================================================
 if (!isset($page_title)) {
     $page_title = APP_NAME;
 }
 
-// Welke pagina is open? (voor het actieve menu-item)
+// Welke pagina is open? (die link in het menu wordt actief)
 $current_file = basename($_SERVER['PHP_SELF']);
-$menu = array(
-    'index.php' => 'Overzicht',
-    'dropdowns.php' => 'Dropdowns',
-    'velden.php' => 'Velden',
-    'knoppen.php' => 'Knoppen',
-    'tonen.php' => 'Netjes tonen',
-    'tabel.php' => 'Tabel + filter',
-    'opslaan.php' => 'Alles samen: opslaan',
-);
+
+// Vult: $menu, $account_menu, $site_logo, $site_tagline, $site_user_name,
+//       $site_role_label, $cart_file, $cart_title, $cart_icon, $cart_number
+require __DIR__ . '/../config/site.php';
 ?>
 <!DOCTYPE html>
 <html lang="nl">
@@ -32,12 +33,39 @@ $menu = array(
     <div class="topbar">
         <div class="topbar-row">
             <a href="index.php" class="logo">
-                <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="14" y="3" rx="1"/><path d="M10 21V8a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-5a1 1 0 0 0-1-1H3"/></svg>
+                <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><?= $site_logo ?></svg>
                 <?= e(APP_NAME) ?>
             </a>
 
             <div class="header-actions">
-                <span class="role-pill">Notion pagina 7</span>
+                <?php if ($site_role_label !== ''): ?>
+                    <span class="role-pill"><?= e($site_role_label) ?></span>
+                <?php endif; ?>
+
+                <?php if (count($account_menu) > 0): ?>
+                    <details class="account">
+                        <summary class="icon-btn" title="Account">
+                            <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>
+                        </summary>
+                        <div class="account-menu">
+                            <?php if ($site_user_name !== ''): ?>
+                                <div class="who"><?= e($site_user_name) ?><small><?= e($site_role_label) ?></small></div>
+                            <?php endif; ?>
+                            <?php foreach ($account_menu as $file => $label): ?>
+                                <a href="<?= e($file) ?>"><?= e($label) ?></a>
+                            <?php endforeach; ?>
+                        </div>
+                    </details>
+                <?php endif; ?>
+
+                <?php if ($cart_file !== ''): ?>
+                    <a href="<?= e($cart_file) ?>" class="icon-btn" title="<?= e($cart_title) ?>">
+                        <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><?= $cart_icon ?></svg>
+                        <?php if ($cart_number > 0): ?>
+                            <span class="dot"><?= e($cart_number) ?></span>
+                        <?php endif; ?>
+                    </a>
+                <?php endif; ?>
             </div>
         </div>
 

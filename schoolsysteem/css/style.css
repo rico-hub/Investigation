@@ -964,3 +964,109 @@ input[type="radio"] {
         gap: 32px;
     }
 }
+
+/* =====================================================================
+   EXTRA STUKJES (overal hetzelfde, in elke map staat exact dit bestand)
+   ===================================================================== */
+
+/* Checkbox en radio in een formulier-tabel NIET uitrekken */
+.form-table input[type="checkbox"],
+.form-table input[type="radio"] {
+    width: auto;
+}
+
+/* ---------- Status kleuren: 3 vaste kleuren ----------
+   NIEUWE STATUS? Zet de naam bij groen, oranje of rood. Meer hoeft niet.
+   De class is altijd: status-<waarde uit de database>
+   Liever niets in de CSS doen? Gebruik dan class="status status-groen". */
+.status-groen,
+.status-nieuw,
+.status-betaald,
+.status-afgerond {
+    background: #eef6e3;
+    color: var(--green);
+}
+
+.status-oranje,
+.status-in_reparatie,
+.status-inactief,
+.status-gereserveerd,
+.status-bezig,
+.status-wachten {
+    background: #fef3c7;
+    color: #b45309;
+}
+
+.status-rood,
+.status-uit_gebruik,
+.status-uitverkocht,
+.status-geadopteerd,
+.status-afgewezen,
+.status-verlopen {
+    background: #fdeae5;
+    color: var(--red);
+}
+
+code { background: #e8f6ec; padding: 1px 5px; border-radius: 4px; font-size: 13px; }
+.lead { font-size: 16px; color: #444; }
+label.choice { display: inline-block; margin: 4px 16px 4px 0; cursor: pointer; }
+.nowrap { white-space: nowrap; }
+
+/* ---------- Demo-blokken ---------- */
+.brick { border-left: 4px solid var(--primary); }
+.brick h2 { margin: 0; font-size: 18px; }
+.brick-head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.num {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 28px; height: 28px; padding: 0 6px; border-radius: 14px;
+    background: var(--primary); color: var(--white); font-weight: bold; font-size: 14px;
+}
+.uitleg { margin: 6px 0 12px; }
+.fix { margin: 12px 0 0; padding: 8px 12px; background: #fff7ed; border-radius: 6px; font-size: 14px; }
+.live {
+    padding: 16px; background: #f8fafc; border: 1px dashed #cbd5e1; border-radius: 6px;
+}
+.live.stack label { display: block; margin-bottom: 10px; }
+.live.stack input[type="text"], .live.stack input[type="email"], .live.stack input[type="password"] { display: block; width: 100%; max-width: 400px; margin-top: 4px; }
+.live label { margin-right: 12px; }
+
+/* Code tonen */
+details.code { margin-top: 12px; }
+details.code summary { cursor: pointer; color: var(--primary); font-size: 14px; font-weight: bold; }
+.code-box {
+    margin-top: 8px; padding: 12px; background: #fbfbfd; border: 1px solid var(--border);
+    border-radius: 6px; overflow-x: auto; font-size: 13px;
+}
+.code-box code { background: none; padding: 0; white-space: pre; }
+
+/* Wat kwam er binnen */
+.received { border-left: 4px solid var(--orange); }
+.received h3 { margin-top: 0; }
+.received .table { box-shadow: none; margin-bottom: 0; }
+
+/* Rauw vs netjes */
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.compare .raw, .compare .nice { padding: 12px; border-radius: 6px; }
+.compare .raw { background: #f1f5f9; }
+.compare .nice { background: #ecfdf5; }
+.compare .label { font-size: 12px; color: var(--grey); font-weight: bold; margin-bottom: 6px; }
+.nowrap { white-space: nowrap; }
+
+/* Overzicht */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-bottom: 20px; }
+.tile { text-decoration: none; color: var(--text); margin-bottom: 0; transition: transform 0.1s; }
+.tile:hover { transform: translateY(-2px); }
+.tile h2 { margin: 0 0 6px; color: var(--primary); font-size: 18px; }
+.tile p { margin: 0; color: #4b5563; font-size: 14px; }
+.puzzle { border-left: 4px solid var(--green); }
+.puzzle ol { margin-bottom: 0; }
+
+.submit-bar {
+    position: sticky; bottom: 0; padding: 12px 16px; background: var(--white);
+    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.08); border-radius: var(--radius); margin-bottom: 20px;
+}
+
+
+@media (max-width: 700px) {
+    .compare { grid-template-columns: 1fr; }
+}

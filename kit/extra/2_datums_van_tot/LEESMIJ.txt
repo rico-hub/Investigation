@@ -1,0 +1,15 @@
+EXTRA PUZZELSTUK: 2 DATUMS KIEZEN BIJ AFREKENEN (van - tot)
+Voor: hotel, verhuur, vakantie. De user kiest in de winkelmand een begin- en einddatum.
+Checks (420): geldige datums, niet in het verleden, einde na begin, niet al bezet in die periode.
+Database: orders krijgt start_date en end_date + CHECK (end_date > start_date).
+
+ZO GEBRUIK JE HET
+1. Kopieer de map kit (je nieuwe app).
+2. Kopieer ALLE bestanden uit deze map over je nieuwe app heen (zelfde mappen, "Vervangen" kiezen).
+3. Pas DAARNA pas hernoemen (Notion pagina 8, Fase 2). Dan worden deze stukken mee hernoemd.
+
+BESTANDEN IN DEZE MAP
+- cart.php
+- database.sql
+- functions/orders.php
+- orders.php

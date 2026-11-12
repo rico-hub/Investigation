@@ -1,13 +1,17 @@
+<?php
+// includes/footer.php - UNIVERSEEL: in elke app exact hetzelfde bestand. NIET AANPASSEN.
+// Gebruikt dezelfde variabelen als header.php (uit config/site.php).
+?>
 </main>
 
 <footer class="site-footer">
     <div class="footer">
         <div class="footer-brand">
             <a href="index.php" class="logo">
-                <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="14" y="3" rx="1"/><path d="M10 21V8a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-5a1 1 0 0 0-1-1H3"/></svg>
+                <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><?= $site_logo ?></svg>
                 <?= e(APP_NAME) ?>
             </a>
-            <p>De bouwstenen van Notion pagina 7: uitleg, het echte element en de code eronder. &copy; <?= date('Y') ?></p>
+            <p><?= e($site_tagline) ?> &copy; <?= date('Y') ?></p>
             <!-- Social icons: wel klikbaar, maar gaan (nog) nergens heen -->
             <div class="socials">
                 <button type="button" aria-label="Instagram"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><path d="M17.5 6.5h.01"/></svg></button>
@@ -25,6 +29,14 @@
                     <a href="<?= e($file) ?>"><?= e($label) ?></a>
                 <?php endforeach; ?>
             </div>
+            <?php if (count($account_menu) > 0): ?>
+                <div>
+                    <h4>Account</h4>
+                    <?php foreach ($account_menu as $file => $label): ?>
+                        <a href="<?= e($file) ?>"><?= e($label) ?></a>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 </footer>
@@ -36,4 +48,5 @@
 </body>
 </html>
 <?php
+// Netjes afsluiten: database verbinding dicht
 $conn->close();

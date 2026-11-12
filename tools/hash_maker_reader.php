@@ -94,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php if ($make_hash !== ''): ?>
             <p>Hash (plak in je INSERT INTO users):</p>
             <code class="block"><?= hash_e($make_hash) ?></code>
-            <code class="block">INSERT INTO users (name, email, password, role) VALUES ('Naam', 'naam@test.nl', '<?= hash_e($make_hash) ?>', 'user');</code>
+            <code class="block">INSERT INTO users (name, email, password, role) VALUES ('Naam', 'naam@test.sr', '<?= hash_e($make_hash) ?>', 'user');</code>
         <?php endif; ?>
 
         <?php if ($make_check !== ''): ?>
