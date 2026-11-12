@@ -1,6 +1,6 @@
 <?php
 // =====================================================================
-// tools/functions/hash_functions.php - functies voor hash_reader.php
+// tools/functions/hash_functions.php - functies voor hash_maker_reader.php
 //
 // LET OP: een hash kun je NIET terugrekenen naar het wachtwoord.
 // password_hash() is "one-way". Wat je WEL kunt:

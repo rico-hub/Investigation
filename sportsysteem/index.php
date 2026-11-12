@@ -82,17 +82,6 @@ require 'includes/header.php';
             <th>Status</th>
             <th>Acties</th>
         </tr>
-        <tr class="column-filters">
-            <th><input type="text" name="f_id" form="filters" value="<?= e($filters['f_id']) ?>" placeholder="#"></th>
-            <th><input type="text" name="f_title" form="filters" value="<?= e($filters['f_title']) ?>" placeholder="Filter les"></th>
-            <th></th>
-            <th><input type="text" name="f_trainer" form="filters" value="<?= e($filters['f_trainer']) ?>" placeholder="Filter trainer"></th>
-            <th><input type="date" name="f_date" form="filters" value="<?= e($filters['f_date']) ?>"></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th><button type="submit" form="filters" class="btn btn-small">Zoek</button></th>
-        </tr>
     </thead>
     <tbody>
         <?php if (count($lessons) === 0): ?>

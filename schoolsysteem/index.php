@@ -95,21 +95,6 @@ require 'includes/header.php';
                 <th>Acties</th>
             <?php endif; ?>
         </tr>
-        <tr class="column-filters">
-            <th><input type="text" name="f_id" form="filters" value="<?= e($filters['f_id']) ?>" placeholder="#"></th>
-            <?php if (is_admin()): ?>
-                <th><input type="text" name="f_student" form="filters" value="<?= e($filters['f_student']) ?>" placeholder="Filter naam"></th>
-                <th></th>
-            <?php endif; ?>
-            <th></th>
-            <th><input type="text" name="f_description" form="filters" value="<?= e($filters['f_description']) ?>" placeholder="Filter omschrijving"></th>
-            <th></th>
-            <th></th>
-            <th><button type="submit" form="filters" class="btn btn-small">Zoek</button></th>
-            <?php if (is_admin()): ?>
-                <th></th>
-            <?php endif; ?>
-        </tr>
     </thead>
     <tbody>
         <?php if (count($grades) === 0): ?>

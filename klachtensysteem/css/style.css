@@ -1,21 +1,26 @@
 /* =====================================================================
    style.css - simpele styling, ALTIJD een lichte drop shadow
    Kleuren staan bovenaan als variabelen: 1 keer aanpassen = overal anders
+   Stijl: groen + donkergrijs, ronde "pil" knoppen en velden
    ===================================================================== */
 
 :root {
-    --primary: #2563eb;
-    --primary-dark: #1d4ed8;
-    --grey: #6b7280;
-    --red: #dc2626;
-    --green: #16a34a;
+    --primary: #16a34a;        /* groen */
+    --primary-dark: #15803d;
+    --dark: #3d3d3d;           /* donkergrijs (knoppen, actieve tab) */
+    --dark-hover: #575757;
+    --grey: #8a8a8a;
+    --red: #e8461e;
+    --green: #15803d;
     --orange: #d97706;
-    --bg: #f3f4f6;
+    --bg: #f4f4f5;
     --white: #ffffff;
-    --text: #1f2937;
-    --border: #e5e7eb;
-    --shadow: 0 2px 6px rgba(0, 0, 0, 0.08);   /* de lichte drop shadow */
-    --radius: 8px;
+    --text: #2b2b2b;
+    --border: #dddddd;
+    --shadow: 0 2px 6px rgba(0, 0, 0, 0.06);   /* de lichte drop shadow */
+    --shadow-big: 0 6px 24px rgba(0, 0, 0, 0.06);
+    --radius: 14px;
+    --pill: 999px;              /* helemaal rond */
 }
 
 * {
@@ -24,7 +29,8 @@
 
 body {
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+    font-size: 15px;
     background: var(--bg);
     color: var(--text);
     line-height: 1.5;
@@ -36,6 +42,18 @@ a {
 
 h1 {
     margin-top: 0;
+    font-weight: 600;
+}
+
+svg.icon {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
 }
 
 /* ---------- Layout ---------- */
@@ -43,47 +61,6 @@ h1 {
     max-width: 1100px;
     margin: 24px auto;
     padding: 0 16px;
-}
-
-.topbar {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    padding: 12px 24px;
-    background: var(--white);
-    box-shadow: var(--shadow);
-}
-
-.topbar .logo {
-    font-size: 20px;
-    font-weight: bold;
-    text-decoration: none;
-    color: var(--text);
-}
-
-.topbar nav {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 14px;
-}
-
-.topbar nav a {
-    text-decoration: none;
-}
-
-.topbar .user {
-    color: var(--grey);
-    font-size: 14px;
-}
-
-.footer {
-    text-align: center;
-    color: var(--grey);
-    font-size: 13px;
-    padding: 24px;
 }
 
 .card {
@@ -100,43 +77,296 @@ h1 {
     gap: 20px;
 }
 
-/* ---------- Buttons ---------- */
-.btn {
-    display: inline-block;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 6px;
+/* ---------- Header (plat, volle breedte, 2 rijen) ---------- */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: var(--white);
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.topbar {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.topbar-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 12px 22px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.logo svg.icon {
+    color: var(--primary);
+    width: 22px;
+    height: 22px;
+}
+
+/* Rechts: rol, account, winkelmand */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+}
+
+.role-pill {
+    padding: 3px 12px;
+    border-radius: var(--pill);
     background: var(--primary);
     color: var(--white);
-    font-size: 14px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.icon-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--pill);
+    color: var(--text);
     text-decoration: none;
     cursor: pointer;
-    box-shadow: var(--shadow);
+}
+
+.icon-btn:hover {
+    background: var(--bg);
+}
+
+.icon-btn .dot {
+    position: absolute;
+    top: 3px;
+    right: 1px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    border-radius: var(--pill);
+    background: var(--primary);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 18px;
+    text-align: center;
+}
+
+/* Account-menu: <details> werkt zonder JavaScript */
+.account {
+    position: relative;
+}
+
+.account summary {
+    list-style: none;
+}
+
+.account summary::-webkit-details-marker {
+    display: none;
+}
+
+.account-menu {
+    position: absolute;
+    right: 0;
+    top: 48px;
+    min-width: 200px;
+    padding: 8px;
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-big), 0 0 0 1px var(--border);
+}
+
+.account-menu .who {
+    padding: 6px 10px 10px;
+    margin-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+}
+
+.account-menu .who small {
+    display: block;
+    color: var(--grey);
+}
+
+.account-menu a {
+    display: block;
+    padding: 8px 10px;
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.account-menu a:hover {
+    background: var(--bg);
+    color: var(--primary);
+}
+
+/* Tweede rij: menu in het midden */
+.main-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4px 28px;
+    padding: 10px 22px 12px;
+    border-top: 1px solid #ececec;
+}
+
+.main-nav a {
+    padding: 2px 0;
+    border-bottom: 2px solid transparent;
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.main-nav a:hover {
+    color: var(--primary);
+}
+
+.main-nav a.active {
+    color: var(--primary);
+    border-bottom-color: var(--primary);
+}
+
+/* ---------- Footer (plat, volle breedte, logo links, kolommen rechts) ---------- */
+.site-footer {
+    margin-top: 40px;
+    background: var(--white);
+    border-top: 1px solid #e6e6e6;
+}
+
+.footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 32px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 22px;
+}
+
+.footer-brand {
+    max-width: 300px;
+}
+
+.footer-brand p {
+    margin: 10px 0 14px;
+    color: var(--grey);
+    font-size: 13px;
+}
+
+.socials {
+    display: flex;
+    gap: 12px;
+}
+
+.socials button {
+    display: inline-flex;
+    padding: 0;
+    border: none;
+    background: none;
+    color: #555;
+    cursor: pointer;
+}
+
+.socials button:hover {
+    color: var(--primary);
+}
+
+.socials svg.icon {
+    width: 18px;
+    height: 18px;
+}
+
+.footer-cols {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 56px;
+}
+
+.footer-cols h4 {
+    margin: 0 0 10px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.footer-cols a {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--grey);
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.footer-cols a:hover {
+    color: var(--primary);
+}
+
+/* ---------- Buttons (pil-vorm) ---------- */
+.btn {
+    display: inline-block;
+    padding: 9px 22px;
+    border: 2px solid var(--primary);
+    border-radius: var(--pill);
+    background: var(--primary);
+    color: var(--white);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
 }
 
 .btn:hover {
-    background: var(--primary-dark);
+    background: var(--white);
+    color: var(--primary);
 }
 
 .btn-grey {
-    background: var(--grey);
+    border-color: var(--dark);
+    background: var(--dark);
 }
 
 .btn-grey:hover {
-    background: #4b5563;
+    border-color: var(--dark-hover);
+    background: var(--dark-hover);
+    color: var(--white);
 }
 
 .btn-red {
-    background: var(--red);
+    border-color: var(--red);
+    background: var(--white);
+    color: var(--red);
 }
 
 .btn-red:hover {
-    background: #b91c1c;
+    background: var(--red);
+    color: var(--white);
 }
 
 .btn-small {
-    padding: 4px 10px;
-    font-size: 13px;
+    padding: 3px 12px;
+    font-size: 12px;
+    letter-spacing: 0;
+    text-transform: none;   /* kleine knoppen in de tabel: geen hoofdletters, past beter */
 }
 
 .button-row {
@@ -144,9 +374,21 @@ h1 {
     gap: 10px;
 }
 
+/* Status-tabs: niet actief = witte pil met rand, actief = groen */
 .tabs {
     flex-wrap: wrap;
     margin-bottom: 16px;
+}
+
+.tabs .btn-grey {
+    border-color: var(--border);
+    background: var(--white);
+    color: var(--text);
+}
+
+.tabs .btn-grey:hover {
+    border-color: var(--primary);
+    color: var(--primary);
 }
 
 form.inline {
@@ -161,7 +403,7 @@ form.inline {
     display: inline-block;
     min-width: 20px;
     padding: 0 6px;
-    border-radius: 10px;
+    border-radius: var(--pill);
     background: var(--primary);
     color: var(--white);
     font-size: 12px;
@@ -176,18 +418,32 @@ input[type="number"],
 input[type="date"],
 select,
 textarea {
-    padding: 8px 10px;
+    padding: 9px 16px;
     border: 1px solid var(--border);
-    border-radius: 6px;
+    border-radius: var(--pill);
     font-size: 14px;
     font-family: inherit;
+    color: var(--text);
     background: var(--white);
-    box-shadow: var(--shadow);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.15);
 }
 
 textarea {
     width: 100%;
     min-height: 100px;
+    border-radius: var(--radius);
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    accent-color: var(--primary);
 }
 
 .form-small {
@@ -198,7 +454,7 @@ textarea {
 .form-small label {
     display: block;
     margin-top: 12px;
-    font-weight: bold;
+    font-weight: 600;
 }
 
 .form-small input {
@@ -225,6 +481,7 @@ textarea {
     text-align: left;
     vertical-align: top;
     padding: 10px 10px 10px 0;
+    font-weight: 600;
 }
 
 .form-table td {
@@ -242,12 +499,18 @@ textarea {
     color: var(--grey);
 }
 
-/* ---------- Filterbalk ---------- */
+/* ---------- Filterbalk (geen kaart erachter) ---------- */
 .filter-bar {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     align-items: center;
+}
+
+.card.filter-bar {
+    padding: 0;
+    background: none;
+    box-shadow: none;
 }
 
 .filter-bar input[type="text"] {
@@ -274,12 +537,13 @@ textarea {
 .table td {
     padding: 10px 12px;
     text-align: left;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid #eeeeee;
 }
 
 .table thead th {
-    background: #eef2ff;
-    font-size: 14px;
+    background: #f7f7f8;
+    font-size: 13px;
+    font-weight: 600;
 }
 
 .table thead th a {
@@ -287,8 +551,12 @@ textarea {
     text-decoration: none;
 }
 
+.table thead th a:hover {
+    color: var(--primary);
+}
+
 .table tbody tr:hover {
-    background: #f9fafb;
+    background: #f3fbf5;
 }
 
 .table .col-id {
@@ -296,17 +564,6 @@ textarea {
     color: var(--grey);
 }
 
-.column-filters th {
-    background: #f8fafc !important;
-    padding: 6px 8px;
-}
-
-.column-filters input {
-    width: 100%;
-    padding: 4px 6px;
-    font-size: 13px;
-    box-shadow: none;
-}
 
 .empty {
     text-align: center;
@@ -322,10 +579,10 @@ textarea {
 .status {
     display: inline-block;
     padding: 2px 10px;
-    border-radius: 12px;
+    border-radius: var(--pill);
     font-size: 12px;
-    font-weight: bold;
-    background: #e5e7eb;
+    font-weight: 600;
+    background: #ececec;
     color: var(--text);
 }
 
@@ -335,7 +592,7 @@ textarea {
 .status-voldoende,
 .status-open_inschrijving,
 .status-gepland {
-    background: #dcfce7;
+    background: #eef6e3;
     color: var(--green);
 }
 
@@ -343,7 +600,7 @@ textarea {
 .status-in_behandeling,
 .status-vol {
     background: #fef3c7;
-    color: var(--orange);
+    color: #b45309;
 }
 
 .status-reparatie,
@@ -351,26 +608,36 @@ textarea {
 .status-open,
 .status-onvoldoende,
 .status-geannuleerd {
-    background: #fee2e2;
+    background: #fdeae5;
     color: var(--red);
 }
 
-/* ---------- Meldingen (flash) ---------- */
+/* ---------- Meldingen (flash): rand + vinkje of kruisje ---------- */
 .flash {
     padding: 12px 16px;
-    border-radius: 6px;
+    border: 1px solid;
+    border-radius: var(--radius);
     margin-bottom: 20px;
-    box-shadow: var(--shadow);
+    background: var(--white);
+    font-weight: 600;
 }
 
 .flash-success {
-    background: #dcfce7;
-    color: #166534;
+    border-color: var(--green);
+    color: var(--green);
+}
+
+.flash-success::before {
+    content: "\2713  ";
 }
 
 .flash-error {
-    background: #fee2e2;
-    color: #991b1b;
+    border-color: var(--red);
+    color: var(--red);
+}
+
+.flash-error::before {
+    content: "\2715  ";
 }
 
 /* ---------- Embedded ---------- */
@@ -382,13 +649,318 @@ textarea {
     box-shadow: var(--shadow);
 }
 
+/* ---------- Kolomfilter: pijltje naast de kolomnaam (js/column-filter.js) ---------- */
+.cf-head {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+}
+
+.cf-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--grey);
+    cursor: pointer;
+}
+
+.cf-btn:hover {
+    background: #eaeaea;
+    color: var(--text);
+}
+
+.cf-btn.active {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.cf-panel {
+    position: absolute;
+    z-index: 50;
+    width: 240px;
+    padding: 10px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+}
+
+.cf-panel .cf-search {
+    width: 100%;
+    margin-bottom: 8px;
+    padding: 6px 12px;
+    font-size: 13px;
+}
+
+.cf-panel label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 6px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.cf-panel label:hover {
+    background: var(--bg);
+}
+
+.cf-all {
+    font-weight: 600;
+    border-bottom: 1px solid #eeeeee;
+    border-radius: 0 !important;
+    margin-bottom: 4px;
+}
+
+.cf-list {
+    max-height: 220px;
+    overflow-y: auto;
+}
+
+.cf-clear {
+    width: 100%;
+    margin-top: 8px;
+    padding: 6px;
+    border: 1px solid var(--border);
+    border-radius: var(--pill);
+    background: var(--white);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.cf-clear:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+/* ---------- Filterbalk: zoekrij + chips (js/filter-bar.js) ---------- */
+.filter-bar.fb {
+    display: block;
+    padding: 0;
+    margin-bottom: 20px;
+    background: var(--white);
+    border: 1px solid #e6e6e6;
+    border-radius: var(--radius);
+}
+
+.fb-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 8px 8px 16px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.fb-search {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--grey);
+}
+
+.fb-search input[type="text"],
+.fb-panel-search input[type="text"] {
+    flex: 1;
+    min-width: 0;
+    padding: 8px 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.fb .btn {
+    border-radius: 10px;
+    padding: 8px 20px;
+    font-size: 14px;
+    letter-spacing: 0;
+    text-transform: none;
+}
+
+.fb-chips {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+}
+
+.fb-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 10px 5px 12px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--white);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.fb-chip:hover {
+    border-color: #bbbbbb;
+}
+
+.fb-chip.is-set {
+    border-color: var(--primary);
+    background: #e8f6ec;
+    color: var(--primary-dark);
+}
+
+.fb-x {
+    display: inline-flex;
+    padding: 1px;
+    border-radius: 4px;
+}
+
+.fb-x:hover {
+    background: rgba(0, 0, 0, 0.08);
+}
+
+.fb-clear-all {
+    margin-left: auto;
+    color: var(--text);
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.fb-clear-all:hover {
+    color: var(--primary);
+}
+
+/* Dropdown onder een chip */
+.fb-panel {
+    position: absolute;
+    z-index: 50;
+    width: 250px;
+    padding: 10px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+}
+
+.fb-panel-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 13px;
+}
+
+.fb-link {
+    padding: 0;
+    border: none;
+    background: none;
+    color: var(--grey);
+    font-family: inherit;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.fb-link:hover {
+    color: var(--primary);
+}
+
+.fb-panel-search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 12px;
+    margin-bottom: 6px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--grey);
+}
+
+.fb-panel-search:focus-within {
+    border-color: var(--primary);
+}
+
+.fb-options {
+    max-height: 240px;
+    overflow-y: auto;
+}
+
+.fb-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 7px 6px;
+    border: none;
+    border-radius: 8px;
+    background: none;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 14px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.fb-option:hover {
+    background: var(--bg);
+}
+
+.fb-box {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    border: 1.5px solid #c4c4c4;
+    border-radius: 5px;
+    color: var(--white);
+}
+
+.fb-option.is-on .fb-box {
+    border-color: var(--primary);
+    background: var(--primary);
+}
+
 /* ---------- Kleine schermen ---------- */
 @media (max-width: 700px) {
+    .site-header { position: static; }
     .grid-2 {
         grid-template-columns: 1fr;
     }
     .table {
         display: block;
         overflow-x: auto;
+    }
+    .topbar-row {
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 10px 14px;
+    }
+    .main-nav {
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        gap: 20px;
+        padding: 10px 14px;
+        white-space: nowrap;
+    }
+    .footer {
+        padding: 22px;
+    }
+    .footer-cols {
+        gap: 32px;
     }
 }

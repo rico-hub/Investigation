@@ -13,9 +13,6 @@ function grades_read_filters()
         'class_id'      => get_param('class_id'),
         'subject_id'    => get_param('subject_id'),
         'status'        => get_param('status'),       // voldoende / onvoldoende
-        'f_id'          => get_param('f_id'),
-        'f_student'     => get_param('f_student'),
-        'f_description' => get_param('f_description'),
         'sort'          => get_param('sort'),
         'dir'           => get_param('dir'),
     );
@@ -72,23 +69,6 @@ function grades_get_all($conn, $filters, $only_student_id)
         $sql .= ' AND g.grade < ?';
         $types .= 'd';
         $params[] = PASS_GRADE;
-    }
-
-    // Kolomfilters
-    if (is_valid_id($filters['f_id'])) {
-        $sql .= ' AND g.id = ?';
-        $types .= 'i';
-        $params[] = (int) $filters['f_id'];
-    }
-    if ($filters['f_student'] !== '') {
-        $sql .= ' AND u.name LIKE ?';
-        $types .= 's';
-        $params[] = '%' . $filters['f_student'] . '%';
-    }
-    if ($filters['f_description'] !== '') {
-        $sql .= ' AND g.description LIKE ?';
-        $types .= 's';
-        $params[] = '%' . $filters['f_description'] . '%';
     }
 
     $columns = array(

@@ -20,10 +20,6 @@ function books_read_filters()
         'search'      => get_param('search'),       // searchbar
         'status'      => get_param('status'),       // statusfilter (dropdown)
         'category_id' => get_param('category_id'),  // dropdown
-        'f_id'        => get_param('f_id'),         // kolomfilters
-        'f_title'     => get_param('f_title'),
-        'f_author'    => get_param('f_author'),
-        'f_year'      => get_param('f_year'),
         'sort'        => get_param('sort'),         // sorteren op kolom
         'dir'         => get_param('dir'),
     );
@@ -60,28 +56,6 @@ function books_get_all($conn, $filters)
         $sql .= ' AND b.category_id = ?';
         $types .= 'i';
         $params[] = (int) $filters['category_id'];
-    }
-
-    // Kolomfilters (de invulvakjes onder de kolomkoppen)
-    if (is_valid_id($filters['f_id'])) {
-        $sql .= ' AND b.id = ?';
-        $types .= 'i';
-        $params[] = (int) $filters['f_id'];
-    }
-    if ($filters['f_title'] !== '') {
-        $sql .= ' AND b.title LIKE ?';
-        $types .= 's';
-        $params[] = '%' . $filters['f_title'] . '%';
-    }
-    if ($filters['f_author'] !== '') {
-        $sql .= ' AND b.author LIKE ?';
-        $types .= 's';
-        $params[] = '%' . $filters['f_author'] . '%';
-    }
-    if ($filters['f_year'] !== '' && ctype_digit($filters['f_year'])) {
-        $sql .= ' AND b.publish_year = ?';
-        $types .= 'i';
-        $params[] = (int) $filters['f_year'];
     }
 
     // Sorteren: kolomnamen kun je NIET met ? binden, dus een whitelist gebruiken

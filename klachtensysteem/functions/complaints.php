@@ -26,9 +26,6 @@ function complaints_read_filters()
         'status'      => get_param('status'),
         'priority'    => get_param('priority'),
         'category_id' => get_param('category_id'),
-        'f_id'        => get_param('f_id'),
-        'f_title'     => get_param('f_title'),
-        'f_user'      => get_param('f_user'),
         'sort'        => get_param('sort'),
         'dir'         => get_param('dir'),
     );
@@ -79,23 +76,6 @@ function complaints_get_all($conn, $filters, $only_user_id)
         $sql .= ' AND k.category_id = ?';
         $types .= 'i';
         $params[] = (int) $filters['category_id'];
-    }
-
-    // Kolomfilters
-    if (is_valid_id($filters['f_id'])) {
-        $sql .= ' AND k.id = ?';
-        $types .= 'i';
-        $params[] = (int) $filters['f_id'];
-    }
-    if ($filters['f_title'] !== '') {
-        $sql .= ' AND k.title LIKE ?';
-        $types .= 's';
-        $params[] = '%' . $filters['f_title'] . '%';
-    }
-    if ($filters['f_user'] !== '') {
-        $sql .= ' AND u.name LIKE ?';
-        $types .= 's';
-        $params[] = '%' . $filters['f_user'] . '%';
     }
 
     // Sorteren (whitelist)

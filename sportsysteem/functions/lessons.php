@@ -57,10 +57,6 @@ function lessons_read_filters()
         'search'    => get_param('search'),
         'status'    => get_param('status'),
         'sport_id'  => get_param('sport_id'),
-        'f_id'      => get_param('f_id'),
-        'f_title'   => get_param('f_title'),
-        'f_trainer' => get_param('f_trainer'),
-        'f_date'    => get_param('f_date'),
         'sort'      => get_param('sort'),
         'dir'       => get_param('dir'),
     );
@@ -105,28 +101,6 @@ function lessons_get_all($conn, $filters)
         $sql .= " AND l.status = 'geannuleerd'";
     } elseif ($filters['status'] === 'afgelopen') {
         $sql .= " AND l.status = 'gepland' AND l.lesson_date < CURDATE()";
-    }
-
-    // Kolomfilters
-    if (is_valid_id($filters['f_id'])) {
-        $sql .= ' AND l.id = ?';
-        $types .= 'i';
-        $params[] = (int) $filters['f_id'];
-    }
-    if ($filters['f_title'] !== '') {
-        $sql .= ' AND l.title LIKE ?';
-        $types .= 's';
-        $params[] = '%' . $filters['f_title'] . '%';
-    }
-    if ($filters['f_trainer'] !== '') {
-        $sql .= ' AND l.trainer LIKE ?';
-        $types .= 's';
-        $params[] = '%' . $filters['f_trainer'] . '%';
-    }
-    if (is_valid_date($filters['f_date'])) {
-        $sql .= ' AND l.lesson_date = ?';
-        $types .= 's';
-        $params[] = $filters['f_date'];
     }
 
     $sql .= ' GROUP BY l.id, s.name';

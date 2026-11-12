@@ -87,7 +87,7 @@ CREATE TABLE action_log (
 -- 2. DUMMY DATA (ook in volgorde: eerst parents, dan children)
 -- Wachtwoord van ALLE dummy accounts = password
 -- (hash gemaakt met password_hash('password', PASSWORD_DEFAULT))
--- Eigen hash maken: open tools/make_hash.php in de browser
+-- Eigen hash maken: open tools/hash_maker_reader.php in de browser
 -- ---------------------------------------------------------------------
 
 INSERT INTO users (id, name, email, password, role) VALUES

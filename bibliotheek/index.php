@@ -44,7 +44,7 @@ require 'includes/header.php';
 
 <h1>Boeken</h1>
 
-<!-- Filterbalk. id="filters" zodat de kolomfilters in de tabel ook bij dit formulier horen -->
+<!-- Filterbalk -->
 <form method="get" action="index.php" id="filters" class="card filter-bar">
     <input type="text" name="search" placeholder="Zoek op titel, auteur of categorie..." value="<?= e($filters['search']) ?>">
 
@@ -77,7 +77,7 @@ require 'includes/header.php';
 
 <table class="table">
     <thead>
-        <!-- Rij 1: eigen kolomkoppen (klikbaar = sorteren) -->
+        <!-- Kolomkoppen: klik = sorteren, pijltje = filter-dropdown (js/column-filter.js) -->
         <tr>
             <th class="col-id"><?= sort_link('ID', 'id', $filters) ?></th>
             <th><?= sort_link('Titel', 'title', $filters) ?></th>
@@ -86,16 +86,6 @@ require 'includes/header.php';
             <th><?= sort_link('Categorie', 'category', $filters) ?></th>
             <th><?= sort_link('Status', 'status', $filters) ?></th>
             <th>Acties</th>
-        </tr>
-        <!-- Rij 2: kolomfilters. form="filters" koppelt ze aan het filterformulier hierboven -->
-        <tr class="column-filters">
-            <th><input type="text" name="f_id" form="filters" value="<?= e($filters['f_id']) ?>" placeholder="#"></th>
-            <th><input type="text" name="f_title" form="filters" value="<?= e($filters['f_title']) ?>" placeholder="Filter titel"></th>
-            <th><input type="text" name="f_author" form="filters" value="<?= e($filters['f_author']) ?>" placeholder="Filter auteur"></th>
-            <th><input type="text" name="f_year" form="filters" value="<?= e($filters['f_year']) ?>" placeholder="Jaar"></th>
-            <th></th>
-            <th></th>
-            <th><button type="submit" form="filters" class="btn btn-small">Zoek</button></th>
         </tr>
     </thead>
     <tbody>

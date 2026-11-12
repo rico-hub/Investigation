@@ -106,16 +106,6 @@ require 'includes/header.php';
             <th><?= sort_link('Datum', 'created', $filters) ?></th>
             <th>Acties</th>
         </tr>
-        <tr class="column-filters">
-            <th><input type="text" name="f_id" form="filters" value="<?= e($filters['f_id']) ?>" placeholder="#"></th>
-            <th><input type="text" name="f_title" form="filters" value="<?= e($filters['f_title']) ?>" placeholder="Filter titel"></th>
-            <th></th>
-            <th><input type="text" name="f_user" form="filters" value="<?= e($filters['f_user']) ?>" placeholder="Filter naam"></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th><button type="submit" form="filters" class="btn btn-small">Zoek</button></th>
-        </tr>
     </thead>
     <tbody>
         <?php if (count($complaints) === 0): ?>
