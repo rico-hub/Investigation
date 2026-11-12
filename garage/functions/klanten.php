@@ -50,8 +50,9 @@ function klant_create($conn, $data)
     if (strlen($data['naam']) > 100) {
         return function_error('Naam mag maximaal 100 tekens zijn.');
     }
-    if (!preg_match('/^[0-9 +-]{6,20}$/', $data['telefoon'])) {
-        return function_error('Telefoon mag alleen cijfers, spaties, + en - bevatten (6 tot 20 tekens).');
+    // Moet beginnen met een cijfer of + (dus geen "-0612..." of "------")
+    if (!preg_match('/^(?=.{6,20}$)\+?[0-9][0-9 -]*$/', $data['telefoon'])) {
+        return function_error('Ongeldig telefoonnummer. Begin met een cijfer of +, daarna alleen cijfers, spaties en - (6 tot 20 tekens).');
     }
 
     // E-mail mag leeg blijven -> dan NULL in de database

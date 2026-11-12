@@ -38,7 +38,7 @@ require 'includes/header.php';
             </tr>
             <tr>
                 <th><label for="telefoon">Telefoon *</label></th>
-                <td><input type="tel" id="telefoon" name="telefoon" maxlength="20" required value="<?= e($data['telefoon']) ?>"></td>
+                <td><input type="tel" id="telefoon" name="telefoon" maxlength="20" pattern="\+?[0-9][0-9 \-]{4,18}" title="Begin met een cijfer of +" required value="<?= e($data['telefoon']) ?>"></td>
             </tr>
             <tr>
                 <th><label for="email">E-mail</label></th>

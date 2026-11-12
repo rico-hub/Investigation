@@ -68,8 +68,8 @@ require 'includes/header.php';
             <tr>
                 <th><label for="kenteken">Kenteken *</label></th>
                 <td>
-                    <input type="text" id="kenteken" name="kenteken" maxlength="8" placeholder="AB-123-C" required value="<?= e($data['kenteken']) ?>">
-                    <p class="hint">8 tekens met 2 streepjes, bv. AB-123-C of 12-ABC-3</p>
+                    <input type="text" id="kenteken" name="kenteken" maxlength="8" placeholder="AB-12-34" required value="<?= e($data['kenteken']) ?>">
+                    <p class="hint">8 tekens met 2 streepjes, bv. AB-12-34</p>
                 </td>
             </tr>
             <tr>

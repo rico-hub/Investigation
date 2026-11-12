@@ -151,7 +151,7 @@ function afspraak_create($conn, $data)
         return function_error('Deze beurt bestaat niet.');
     }
     if ($beurt['datum'] < date('Y-m-d')) {
-        return function_error('Deze beurt is al geweest.');
+        return function_error('Je kunt geen afspraak plannen op een dag in het verleden.');
     }
 
     // 3. Is de beurt vol?

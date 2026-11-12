@@ -13,6 +13,10 @@ define('WERKPLAATS_PLEKKEN', 4); // max 4 auto's per dag in de werkplaats
 define('ERR_FUNCTION', 420);     // een check in een functie faalt (verkeerde invoer, geen rechten, ...)
 define('ERR_DATABASE', 410);     // de database geeft een fout (verbinding, query, constraint, ...)
 
+// Tijdzone van de garage (Suriname). PHP en MySQL moeten dezelfde "vandaag" gebruiken,
+// anders kan rond middernacht een afspraak op een verleden dag doorglippen.
+date_default_timezone_set('America/Paramaribo');
+
 mysqli_report(MYSQLI_REPORT_OFF);
 
 $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
@@ -27,4 +31,9 @@ $conn->set_charset('utf8mb4');
 
 if (!$conn->query("SET SESSION sql_mode = 'STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION'")) {
     die('Error-code: ' . ERR_DATABASE . ' - sql_mode instellen mislukt: ' . htmlspecialchars($conn->error));
+}
+
+// MySQL dezelfde tijdzone geven als PHP (zodat CURDATE() == date('Y-m-d'))
+if (!$conn->query("SET time_zone = '" . date('P') . "'")) {
+    die('Error-code: ' . ERR_DATABASE . ' - tijdzone instellen mislukt: ' . htmlspecialchars($conn->error));
 }

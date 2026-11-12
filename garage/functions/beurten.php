@@ -181,6 +181,9 @@ function beurt_create($conn, $data)
     if (!is_valid_time($data['tijd'])) {
         return function_error('Vul een geldige tijd in (uu:mm).');
     }
+    if (is_numeric($data['max_autos']) && (float) $data['max_autos'] < 1) {
+        return function_error('Maximaal aantal auto\'s mag niet 0 of negatief zijn.');
+    }
     if (!ctype_digit($data['max_autos'])) {
         return function_error('Maximaal aantal auto\'s moet een heel getal zijn.');
     }
